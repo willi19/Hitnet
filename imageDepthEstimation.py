@@ -7,7 +7,7 @@ from hitnet import HitNet, ModelType, draw_disparity, draw_depth, CameraConfig, 
 # Select model type
 # model_type = ModelType.middlebury
 # model_type = ModelType.flyingthings
-model_type = ModelType.eth3d
+model_type = ModelType.middlebury
 
 if model_type == ModelType.middlebury:
 	model_path = "models/middlebury_d400.pb"
@@ -26,7 +26,7 @@ right_img = load_img("https://vision.middlebury.edu/stereo/data/scenes2003/newda
 
 # Estimate the depth
 disparity_map = hitnet_depth(left_img, right_img)
-
+print(disparity_map.shape)
 color_disparity = draw_disparity(disparity_map)
 cobined_image = np.hstack((left_img, right_img, color_disparity))
 
